@@ -21,26 +21,14 @@ jobs:
       JOB_LEVEL1: 'at JOB_LEVEL1'
     # flow
     steps:
-    - name: Say Hello World 1
+    - name: set output value
+      id: first
       shell: bash
-      env:
-        STEP_LEVEL1: 'at STEP_LEVEL1'
       run: |
-        echo "Hello World from step 1"
-        echo $WORKFLOW_LEVEL
-        echo $JOB_LEVEL1
-        echo $STEP_LEVEL1
-        echo $STEP_LEVEL2
-        echo "STEP_VALUE1='Set by step 1 at run time'" >> $GITHUB_ENV
-    - name: Say Hello World 2
-      shell: pwsh
-      env:
-        STEP_LEVEL2: 'at STEP_LEVEL2'
-      run: |
-        echo "Hello World from step 2"
-        echo $WORKFLOW_LEVEL
-        echo $JOB_LEVEL1
-        echo $STEP_LEVEL1
-        echo $STEP_LEVEL2
-        echo $STEP_VALUE1
-        echo "VALUE: $env:STEP_VALUE1"
+        first_value="This is the first output value"
+
+        echo "::set-output name=my_first_value::$first_vaule"
+      - name: get output value
+        shell: bash
+        run:  |
+          echo ${{ steps.first.outputs.my_first_value }}
