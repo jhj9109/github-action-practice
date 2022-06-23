@@ -1,40 +1,32 @@
 name: 'My first github action'
 
-# on: when exec based event
-on: push
+on: [ 'push', 'pull_request' ]
 
-# env load at level (workflow || job || steps)
-# => it make scope
-env:
-  WORKFLOW_LEVEL: 'at WORKFLOW_LEVEL'
-
-# what to do
 jobs:
-  # per build server
   first-job:
-    name: 'first fob'
-    
-    # exec at 3 times
-    strategy:
-      matrix:
-        os: ['windows-lates', 'macos-latest', 'ubuntu-latest']
-        nodejs: [ '14.x', '16.x' ]
+    name: 'first job'
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
-    env:
-      JOB_LEVEL1: 'at JOB_LEVEL1'
-    # flow
     steps:
-    - name: Setup node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs }}
+    - name: output value 1
+      shell: bash
+      run: |
+        echo "Hello World"
+    - name: output value 2
+      if: github.event_name == 'pull_request'
+      shell: bash
+      run: |
+        echo "Hello World"
+  second-job:
+    name: 'second job'
+    if: github.event_name == 'pull_request'
 
-    - name: output value from ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: output value
       id: first
       shell: bash
       run: |
-        echo "OS: ${{ matrix.os }}"
-     
-        echo "node.js: ${{ matrix.nodejs }}"
+        echo "Hello World"
