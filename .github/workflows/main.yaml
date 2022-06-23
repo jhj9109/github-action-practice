@@ -25,12 +25,12 @@ jobs:
       JOB_LEVEL1: 'at JOB_LEVEL1'
     # flow
     steps:
-    - name: make value
+    - name: output value frem ${{ matrix.os }}
       id: first
       shell: bash
       run: |
         first_value="This is the first output value"
-
+        echo "OS: ${{ matrix.os }}"
         echo "::add-mask::$first_value"
         echo "::set-output name=my_first_value::$first_value"
     - name: use github's secrets
