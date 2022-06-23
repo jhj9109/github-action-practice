@@ -32,7 +32,7 @@ jobs:
         echo $JOB_LEVEL2
         echo $STEP_LEVEL1
         echo $STEP_LEVEL2
-        echo "STEP_VALUE1='Set by step 1'" >> $GITHUB_ENV
+        echo "STEP_VALUE1='Set by step 1 at run time'" >> $GITHUB_ENV
     - name: Say Hello World 2
       shell: pwsh
       env:
