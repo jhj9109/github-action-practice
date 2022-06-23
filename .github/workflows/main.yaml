@@ -12,12 +12,12 @@ jobs:
     - name: output value 1
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World 1-1"
     - name: output value 2
       if: github.event_name == 'pull_request'
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World 1-2"
   second-job:
     name: 'second job'
     if: github.event_name == 'pull_request'
@@ -29,4 +29,4 @@ jobs:
       id: first
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World 2"
