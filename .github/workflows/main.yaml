@@ -12,21 +12,18 @@ jobs:
     - name: output value 1
       shell: bash
       run: |
-        echo "Hello World 1-1"
+        echo "Hello World"
     - name: output value 2
-      if: github.event_name == 'pull_request'
       shell: bash
       run: |
-        echo "Hello World 1-2"
+        echo "Hello World"
   second-job:
     name: 'second job'
-    if: github.event_name == 'pull_request'
 
     runs-on: ubuntu-latest
 
     steps:
     - name: output value
-      id: first
       shell: bash
       run: |
-        echo "Hello World 2"
+        echo "Hello World"
