@@ -1,0 +1,24 @@
+name: 'My first github action'
+
+# on: when exec based event
+on: push
+
+# what to do
+jobs:
+  # per build server
+  first-job:
+    name: 'first fob'
+    
+    # os
+    runs-on: ubuntu-latest
+
+    # flow
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+      run: |
+        echo "Hello World from step 1"
+    - name: Say Hello World 2
+      shell: pwsh
+      run: |
+        echo "Hello World from step 2"
