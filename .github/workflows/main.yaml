@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: this first job step 1
+    - name: output value 1
       shell: bash
       run: |
         echo "Hello World"
-    - name: this first job step 2
+    - name: output value 2
       shell: bash
       run: |
         echo "Hello World"
@@ -24,19 +24,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: this second job step 1 
+    - name: output value
       shell: bash
       run: |
         echo "Hello World"
-  
   third-job:
     name: 'third job'
-    needs: second-job
+    needs: first-job
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: this third job step 1 
+    - name: output value
       shell: bash
       run: |
         echo "Hello World"
