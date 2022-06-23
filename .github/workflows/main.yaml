@@ -3,6 +3,11 @@ name: 'My first github action'
 # on: when exec based event
 on: push
 
+# env load at level (workflow || job || steps)
+# => it make scope
+env:
+  WORKFLOW_LEVEL: 'at WORKFLOW_LEVEL'
+
 # what to do
 jobs:
   # per build server
@@ -12,13 +17,19 @@ jobs:
     # os
     runs-on: ubuntu-latest
 
+    env:
+      JOB_LEVEL1: 'at JOB_LEVEL1'
     # flow
     steps:
     - name: Say Hello World 1
       shell: bash
+      env:
+        STEP_LEVEL1: 'at STEP_LEVEL1'
       run: |
         echo "Hello World from step 1"
     - name: Say Hello World 2
       shell: pwsh
+      env:
+        STEP_LEVEL2: 'at STEP_LEVEL2'
       run: |
         echo "Hello World from step 2"
