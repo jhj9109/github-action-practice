@@ -18,23 +18,24 @@ jobs:
     strategy:
       matrix:
         os: ['windows-lates', 'macos-latest', 'ubuntu-latest']
-    
+        nodejs: [ '14.x', '16.x' ]
+
     runs-on: ${{ matrix.os }}
 
     env:
       JOB_LEVEL1: 'at JOB_LEVEL1'
     # flow
     steps:
-    - name: output value frem ${{ matrix.os }}
+    - name: output value from ${{ matrix.os }} ${{ matrix.nodejs}}
       id: first
       shell: bash
+      with:
+        nodejs-version: ${{ matrix.nodejs }}
       run: |
-        first_value="This is the first output value"
+        echo "maybe work 6 times"
         echo "OS: ${{ matrix.os }}"
-        echo "::add-mask::$first_value"
-        echo "::set-output name=my_first_value::$first_value"
-    - name: use github's secrets
+        echo "NODEJS: ${{ matrix.nodejs }}"
+    - name: no work
       shell: bash
       run: |
-        echo ${{ secrets.SECRET_HELLO }}  
-        echo ${{ steps.first.outputs.my_first_value }}
+        echo "no work"
