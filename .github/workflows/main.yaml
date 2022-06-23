@@ -26,16 +26,15 @@ jobs:
       JOB_LEVEL1: 'at JOB_LEVEL1'
     # flow
     steps:
-    - name: output value from ${{ matrix.os }} ${{ matrix.nodejs}}
+    - name: Setup node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.nodejs }}
+
+    - name: output value from ${{ matrix.os }}
       id: first
       shell: bash
-      with:
-        nodejs-version: ${{ matrix.nodejs }}
       run: |
-        echo "maybe work 6 times"
         echo "OS: ${{ matrix.os }}"
-        echo "NODEJS: ${{ matrix.nodejs }}"
-    - name: no work
-      shell: bash
-      run: |
-        echo "no work"
+     
+        echo "node.js: ${{ matrix.nodejs }}"
