@@ -29,7 +29,8 @@ jobs:
 
         echo "::add-mask::$first_value"
         echo "::set-output name=my_first_value::$first_value"
-    - name: get output value
+    - name: use github's secrets
       shell: bash
       run: |
+        echo ${{ secrets.SECRET_HELLO }}
         echo ${{ steps.first.outputs.my_first_value }}
